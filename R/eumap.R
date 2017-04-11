@@ -11,8 +11,10 @@
 ##' @importFrom data.table setnames
 ##' @export
 eumap <- function(.data, .lon = "lon", .lat = "lat",
-                 xlim = c(-10, 30),
-                 ylim = c(35, 60)) {
+                 .xlim = c(-10, 30),
+                 .ylim = c(35, 60),
+                 .eu_colour = "#BBBBBB",
+                 .eu_fill = "#DDDDDD") {
   
   world <- map_data("world")
   data.table::setnames(world, c("X","Y","PID","POS","region","subregion"))
@@ -21,9 +23,9 @@ eumap <- function(.data, .lon = "lon", .lat = "lat",
   ggplot(data = .data,
          aes_string(x = .lon, y = .lat)) +
     geom_polygon(data = world, aes(x = X,  y = Y, group = PID),
-                 colour = "#BBBBBB", fill = "#DDDDDD") +
+                 colour = .eu_colour, fill = .eu_fill) +
     theme_minimal() +
-    xlim(-10, 30) + ylim(35, 60) +
+    xlim(.xlim) + ylim(.ylim) +
     xlab("Longitude") + ylab("Latitude") +
     coord_quickmap()
 }
