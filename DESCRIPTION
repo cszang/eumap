@@ -3,7 +3,12 @@ Title: Draw a map of europe
 Version: 0.0.0.9000
 Authors@R: person("Christian", "Zang", email = "christian.zang@wzw.tum.de", role = c("aut", "cre"))
 Description: Provide a base ggplot layer for an European map
-Depends: R (>= 3.3.3)
+Depends:
+    R (>= 3.3.3),
+    PBSmapping,
+    maps,
+    ggplot2,
+    data.table
 License: GPL >= 2
 Encoding: UTF-8
 LazyData: true
