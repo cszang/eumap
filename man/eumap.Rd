@@ -4,8 +4,8 @@
 \alias{eumap}
 \title{Provide a map layer for maps of Europe}
 \usage{
-eumap(.data, .lon = "lon", .lat = "lat", xlim = c(-10, 30), ylim = c(35,
-  60))
+eumap(.data, .lon = "lon", .lat = "lat", .xlim = c(-10, 30),
+  .ylim = c(35, 60), .eu_colour = "#BBBBBB", .eu_fill = "#DDDDDD")
 }
 \arguments{
 \item{.data}{data set to plot on the map}
@@ -14,9 +14,13 @@ eumap(.data, .lon = "lon", .lat = "lat", xlim = c(-10, 30), ylim = c(35,
 
 \item{.lat}{name of the latitude variable as character}
 
-\item{xlim}{longitudinal boundaries of the map}
+\item{.xlim}{longitudinal boundaries of the map}
 
-\item{ylim}{latitudinal boundaries of the map}
+\item{.ylim}{latitudinal boundaries of the map}
+
+\item{.eu_colour}{line colour for the EU map}
+
+\item{.eu_fill}{fill colour for the EU map}
 }
 \value{
 an object of class "gg"

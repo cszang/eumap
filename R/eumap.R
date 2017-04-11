@@ -2,8 +2,10 @@
 ##' @param .data data set to plot on the map
 ##' @param .lon name of the longitude variable as character
 ##' @param .lat name of the latitude variable as character
-##' @param xlim longitudinal boundaries of the map
-##' @param ylim latitudinal boundaries of the map
+##' @param .xlim longitudinal boundaries of the map 
+##' @param .ylim latitudinal boundaries of the map
+##' @param .eu_colour line colour for the EU map
+##' @param .eu_fill fill colour for the EU map
 ##' @return an object of class "gg"
 ##' @import ggplot2
 ##' @import maps
