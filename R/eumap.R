@@ -20,7 +20,7 @@ eumap <- function(.data, .lon = "lon", .lat = "lat",
   
   world <- map_data("world")
   data.table::setnames(world, c("X","Y","PID","POS","region","subregion"))
-  world <- clipPolys(world, xlim = xlim, ylim = ylim, keepExtra = TRUE)
+  world <- clipPolys(world, xlim = .xlim, ylim = .ylim, keepExtra = TRUE)
   
   ggplot(data = .data,
          aes_string(x = .lon, y = .lat)) +
