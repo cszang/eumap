@@ -23,12 +23,16 @@ regmap <- function(.data, region = "europe",
     map <- maps::map
   }
 
-  if (is.null(.xlim) | is.null(.ylim)) {
-    .region <- match.arg(region,
-                        c("europe", "amazonia"))
+  .region <- match.arg(region,
+                      c("europe", "amazonia"))
+
+  if (is.null(.xlim)) {
     .xlim <- switch(.region,
                    europe = c(-10, 30),
                    amazonia = c(-78, -47))
+  }
+
+  if (is.null(.ylim)) {
     .ylim <- switch(.region,
                    europe = c(35, 60),
                    amazonia = c(-18, 11))
