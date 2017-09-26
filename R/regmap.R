@@ -19,8 +19,19 @@ regmap <- function(.data, region = "europe",
                  .region_colour = "#BBBBBB",
                  .region_fill = "#DDDDDD") {
 
-  if ("purrr" %in% (.packages())) {
-    map <- maps::map
+  pkgs <- (.packages())
+
+  if ("purrr" %in% pkgs) {
+    if (which(pkgs == "purrr") <
+          which(pkgs == "regmap")) {
+      warning("`purrr` is loaded after `regmap`, and we need to temporalily set `map <- maps::map`.
+If errors with `purrr` should arise, `regmap` might be the culprit!",
+              call. = FALSE)
+      assign("map", maps::map, envir = .GlobalEnv)
+      remap_map <- TRUE
+    } else {
+      remap_map <- FALSE
+    }
   }
 
   .region <- match.arg(region,
@@ -41,6 +52,10 @@ regmap <- function(.data, region = "europe",
   world <- map_data("world")
   data.table::setnames(world, c("X","Y","PID","POS","region","subregion"))
   world <- clipPolys(world, xlim = .xlim, ylim = .ylim, keepExtra = TRUE)
+
+  if (remap_map) {
+    assign("map", purrr::map, envir = .GlobalEnv)
+  }
   
   ggplot(data = .data,
          aes_string(x = .lon, y = .lat)) +
