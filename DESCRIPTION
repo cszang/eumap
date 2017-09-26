@@ -1,8 +1,8 @@
-Package: eumap
-Title: Draw a map of europe
-Version: 0.0.0.9000
+Package: regmap
+Title: Draw regional maps
+Version: 0.2
 Authors@R: person("Christian", "Zang", email = "christian.zang@wzw.tum.de", role = c("aut", "cre"))
-Description: Provide a base ggplot layer for an European map
+Description: Provide a base ggplot layer for maps with regional focus
 Depends:
     R (>= 3.3.3),
     PBSmapping,
