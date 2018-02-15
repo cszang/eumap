@@ -29,11 +29,13 @@ If errors with `purrr` should arise, `regmap` might be the culprit!",
               call. = FALSE)
       assign("map", maps::map, envir = .GlobalEnv)
       remap_map <- TRUE
+    } else {
+      remap_map <- FALSE
     }
   } else {
     remap_map <- FALSE
   }
-
+  
   .region <- match.arg(region,
                       c("europe", "amazonia"))
 
