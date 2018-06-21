@@ -1,11 +1,14 @@
 ##' @title Provide a map layer for maps of various regions
 ##' @param .data data set to plot on the map
+##' @param region
 ##' @param .lon name of the longitude variable as character
 ##' @param .lat name of the latitude variable as character
-##' @param .xlim longitudinal boundaries of the map 
+##' @param .xlim longitudinal boundaries of the map
 ##' @param .ylim latitudinal boundaries of the map
 ##' @param .region_colour line colour for the region map
 ##' @param .region_fill fill colour for the region map
+##' @param plot shall a plot be generated (TRUE, default) or only the
+##'   map layer be returned (FALSE)
 ##' @return an object of class "gg"
 ##' @import ggplot2
 ##' @import maps
@@ -17,7 +20,8 @@ regmap <- function(.data, region = "europe",
                  .xlim = NULL,
                  .ylim = NULL,
                  .region_colour = "#BBBBBB",
-                 .region_fill = "#DDDDDD") {
+                 .region_fill = "#DDDDDD",
+                 plot = TRUE) {
 
   pkgs <- (.packages())
 
@@ -58,13 +62,20 @@ If errors with `purrr` should arise, `regmap` might be the culprit!",
   if (remap_map) {
     assign("map", purrr::map, envir = .GlobalEnv)
   }
+
+  if (plot) {
   
-  ggplot(data = .data,
-         aes_string(x = .lon, y = .lat)) +
+    ggplot(data = .data,
+           aes_string(x = .lon, y = .lat)) +
+      geom_polygon(data = world, aes(x = X,  y = Y, group = PID),
+                   colour = .region_colour, fill = .region_fill) +
+      theme_minimal() +
+      xlim(.xlim) + ylim(.ylim) +
+      xlab("Longitude") + ylab("Latitude") +
+      coord_quickmap()
+    
+  } else {
     geom_polygon(data = world, aes(x = X,  y = Y, group = PID),
-                 colour = .region_colour, fill = .region_fill) +
-    theme_minimal() +
-    xlim(.xlim) + ylim(.ylim) +
-    xlab("Longitude") + ylab("Latitude") +
-    coord_quickmap()
+                 colour = .region_colour, fill = .region_fill)
+  }
 }

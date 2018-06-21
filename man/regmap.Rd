@@ -6,7 +6,7 @@
 \usage{
 regmap(.data, region = "europe", .lon = "lon", .lat = "lat",
   .xlim = NULL, .ylim = NULL, .region_colour = "#BBBBBB",
-  .region_fill = "#DDDDDD")
+  .region_fill = "#DDDDDD", plot = TRUE)
 }
 \arguments{
 \item{.data}{data set to plot on the map}
@@ -22,6 +22,9 @@ regmap(.data, region = "europe", .lon = "lon", .lat = "lat",
 \item{.region_colour}{line colour for the region map}
 
 \item{.region_fill}{fill colour for the region map}
+
+\item{plot}{shall a plot be generated (TRUE, default) or only the
+map layer be returned (FALSE)}
 }
 \value{
 an object of class "gg"
